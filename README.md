@@ -25,6 +25,8 @@ Converted from the popular [hexo-theme-yun](https://github.com/YunYouJun/hexo-th
 
 ## 📦 Installation
 
+**Note**: This theme does not require a build step. It's a pure JavaScript theme that works directly with Docusaurus.
+
 ### Using npm
 
 ```bash

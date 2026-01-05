@@ -23,11 +23,7 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "dev": "tsc --watch"
-  },
+  "scripts": {},
   "dependencies": {
     "@docusaurus/theme-classic": "^3.0.0",
     "@docusaurus/theme-common": "^3.0.0",
