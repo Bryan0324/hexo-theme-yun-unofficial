@@ -49,11 +49,15 @@ pnpm add docusaurus-theme-yun
 
 ### 1. Add Theme to Your Docusaurus Config
 
+This theme extends `@docusaurus/theme-classic`. Make sure you're using the classic preset, then add the Yun theme.
+
 Edit your `docusaurus.config.js`:
 
 ```javascript
 module.exports = {
   // ... other config
+  
+  // Add the Yun theme (extends classic theme)
   themes: ['docusaurus-theme-yun'],
   
   themeConfig: {
@@ -72,7 +76,26 @@ module.exports = {
         title: 'Your Site Title',
       },
     },
+    // ... standard Docusaurus themeConfig options
   },
+  
+  // Use classic preset
+  presets: [
+    [
+      '@docusaurus/preset-classic',
+      {
+        docs: {
+          sidebarPath: require.resolve('./sidebars.js'),
+        },
+        blog: {
+          showReadingTime: true,
+        },
+        theme: {
+          customCss: require.resolve('./src/css/custom.css'),
+        },
+      },
+    ],
+  ],
 };
 ```
 

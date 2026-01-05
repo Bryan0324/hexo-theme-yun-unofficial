@@ -28,6 +28,8 @@ npm install docusaurus-theme-yun
 
 #### Step 3: Configure the theme
 
+**Important**: Theme Yun extends `@docusaurus/theme-classic`. The classic preset should be used along with the Yun theme.
+
 Edit `docusaurus.config.js`:
 
 ```javascript
@@ -37,6 +39,7 @@ module.exports = {
   url: 'https://your-site.com',
   baseUrl: '/',
   
+  // Add Theme Yun (extends classic theme)
   themes: ['docusaurus-theme-yun'],
   
   themeConfig: {
@@ -54,8 +57,29 @@ module.exports = {
         title: 'My Site',
       },
     },
-    // ... rest of config
+    // Standard Docusaurus config
+    navbar: {
+      title: 'My Site',
+      items: [
+        { to: '/blog', label: 'Blog', position: 'left' },
+      ],
+    },
   },
+  
+  // Use classic preset (required)
+  presets: [
+    [
+      '@docusaurus/preset-classic',
+      {
+        docs: {
+          sidebarPath: require.resolve('./sidebars.js'),
+        },
+        blog: {
+          showReadingTime: true,
+        },
+      },
+    ],
+  ],
 };
 ```
 

@@ -3,14 +3,13 @@
  * Converted from hexo-theme-yun
  * 
  * A fast & light & lovely theme for Docusaurus
+ * 
+ * This theme extends @docusaurus/theme-classic
  */
 
 const path = require('path');
 
 module.exports = function themeYun(context, options = {}) {
-  const { siteConfig } = context;
-  const { themeConfig = {} } = siteConfig;
-
   return {
     name: 'docusaurus-theme-yun',
 
@@ -19,7 +18,7 @@ module.exports = function themeYun(context, options = {}) {
     },
 
     getTypeScriptThemePath() {
-      return path.resolve(__dirname, '..', 'src', 'theme');
+      return path.resolve(__dirname, './theme');
     },
 
     getClientModules() {
@@ -32,7 +31,11 @@ module.exports = function themeYun(context, options = {}) {
       return {
         resolve: {
           alias: {
-            '@theme-original': path.resolve(__dirname, './theme'),
+            // This allows components to import from @theme-original
+            '@theme-original': path.resolve(
+              require.resolve('@docusaurus/theme-classic/lib/index.js'),
+              '../theme'
+            ),
           },
         },
       };

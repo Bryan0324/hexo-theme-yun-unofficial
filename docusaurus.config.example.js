@@ -14,7 +14,7 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/yun.svg',
 
-  // Theme configuration
+  // Theme configuration - Yun theme extends the classic theme
   themes: ['docusaurus-theme-yun'],
 
   themeConfig: {
