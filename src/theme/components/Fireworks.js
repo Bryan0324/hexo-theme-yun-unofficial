@@ -96,7 +96,9 @@ export default function Fireworks({ enable = true, colors = [] }) {
     <canvas 
       ref={canvasRef} 
       className="yun-fireworks-canvas"
-      aria-label="Fireworks effect"
+      aria-hidden="true"
+      role="presentation"
+      aria-label="Decorative fireworks effect - click to create fireworks"
     />
   );
 }

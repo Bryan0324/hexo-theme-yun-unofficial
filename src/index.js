@@ -7,9 +7,9 @@
 
 const path = require('path');
 
-module.exports = function themeYun(context, options) {
+module.exports = function themeYun(context, options = {}) {
   const { siteConfig } = context;
-  const { themeConfig } = siteConfig;
+  const { themeConfig = {} } = siteConfig;
 
   return {
     name: 'docusaurus-theme-yun',

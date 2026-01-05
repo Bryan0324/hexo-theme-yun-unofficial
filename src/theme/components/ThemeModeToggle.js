@@ -3,22 +3,41 @@ import { useColorMode } from '@docusaurus/theme-common';
 import './ThemeModeToggle.css';
 
 const THEME_MODES = ['light', 'dark', 'auto', 'sunset'];
+const STORAGE_KEY = 'yun-theme-mode-preference';
 
 export default function ThemeModeToggle() {
   const { colorMode, setColorMode } = useColorMode();
-  const [currentMode, setCurrentMode] = useState(colorMode);
+  // Load saved preference or default to 'auto'
+  const [currentMode, setCurrentMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(STORAGE_KEY) || 'auto';
+    }
+    return 'auto';
+  });
 
   useEffect(() => {
+    // Save preference to localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, currentMode);
+    }
+
     // Handle auto mode based on time
     if (currentMode === 'auto') {
-      const hour = new Date().getHours();
-      if (hour >= 7 && hour < 17) {
-        setColorMode('light');
-      } else if (hour >= 17 && hour < 20) {
-        setColorMode('sunset');
-      } else {
-        setColorMode('dark');
-      }
+      const updateTheme = () => {
+        const hour = new Date().getHours();
+        if (hour >= 7 && hour < 17) {
+          setColorMode('light');
+        } else if (hour >= 17 && hour < 20) {
+          setColorMode('sunset');
+        } else {
+          setColorMode('dark');
+        }
+      };
+      
+      updateTheme();
+      // Check every minute for time-based updates
+      const interval = setInterval(updateTheme, 60000);
+      return () => clearInterval(interval);
     } else {
       setColorMode(currentMode);
     }

@@ -8,3 +8,13 @@
   z-index: 9999;
   cursor: crosshair;
 }
+
+/* Accessibility: ensure canvas doesn't block screen readers */
+.yun-fireworks-canvas[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+/* Allow keyboard users to skip the canvas */
+.yun-fireworks-canvas:focus {
+  outline: none;
+}

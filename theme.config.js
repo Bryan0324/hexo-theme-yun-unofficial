@@ -2,6 +2,31 @@
  * Theme configuration utilities for Docusaurus Theme Yun
  */
 
+/**
+ * Deep merge utility for nested objects
+ */
+function deepMerge(target, source) {
+  const output = Object.assign({}, target);
+  if (isObject(target) && isObject(source)) {
+    Object.keys(source).forEach(key => {
+      if (isObject(source[key])) {
+        if (!(key in target)) {
+          Object.assign(output, { [key]: source[key] });
+        } else {
+          output[key] = deepMerge(target[key], source[key]);
+        }
+      } else {
+        Object.assign(output, { [key]: source[key] });
+      }
+    });
+  }
+  return output;
+}
+
+function isObject(item) {
+  return item && typeof item === 'object' && !Array.isArray(item);
+}
+
 module.exports = {
   /**
    * Default theme configuration
@@ -107,20 +132,9 @@ module.exports = {
   },
 
   /**
-   * Merge user config with default config
+   * Merge user config with default config using deep merge
    */
-  mergeConfig(userConfig) {
-    return {
-      ...this.defaultConfig,
-      ...userConfig,
-      colors: {
-        ...this.defaultConfig.colors,
-        ...userConfig.colors,
-      },
-      features: {
-        ...this.defaultConfig.features,
-        ...userConfig.features,
-      },
-    };
+  mergeConfig(userConfig = {}) {
+    return deepMerge(this.defaultConfig, userConfig);
   },
 };
