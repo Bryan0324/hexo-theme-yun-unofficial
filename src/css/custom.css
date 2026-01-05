@@ -1,0 +1,341 @@
+/**
+ * Docusaurus Theme Yun - Custom Styles
+ * Converted from hexo-theme-yun Stylus files
+ */
+
+/* ============================================
+   CSS Custom Properties / Variables
+   ============================================ */
+
+:root {
+  /* Primary colors */
+  --yun-primary-color: #0078e7;
+  --yun-bg-color: #f5f5f5;
+  --yun-selection-bg: #8e71c1;
+  --yun-tag-start-color: #999999;
+  --yun-tag-end-color: #0078e7;
+
+  /* Dark mode colors */
+  --yun-dark-block: #1b1f2e;
+  --yun-dark-bg: #121212;
+
+  /* Sunset mode colors */
+  --yun-sunset-primary: #ff6b6b;
+  --yun-sunset-bg: #fff5e6;
+  --yun-sunset-block: #ffe8d6;
+  --yun-sunset-text: #8b4513;
+  --yun-sunset-link: #ff8e53;
+  --yun-sunset-selection: #ffb5e8;
+  --yun-sunset-banner: #ff6b35;
+
+  /* Font families */
+  --yun-font-serif: 'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif;
+  --yun-font-sans-serif: 'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif;
+  --yun-font-monospace: 'Source Code Pro', Consolas, Monaco, SFMono-Regular, 'Ubuntu Mono', Menlo, monospace;
+
+  /* Spacing */
+  --yun-spacing-xs: 0.25rem;
+  --yun-spacing-sm: 0.5rem;
+  --yun-spacing-md: 1rem;
+  --yun-spacing-lg: 1.5rem;
+  --yun-spacing-xl: 2rem;
+
+  /* Border radius */
+  --yun-border-radius: 0.5rem;
+  --yun-border-radius-sm: 0.25rem;
+  --yun-border-radius-lg: 1rem;
+
+  /* Transitions */
+  --yun-transition: all 0.3s ease;
+  --yun-transition-fast: all 0.15s ease;
+}
+
+/* ============================================
+   Dark Mode
+   ============================================ */
+
+[data-theme='dark'] {
+  --yun-primary-color: #0078e7;
+  --yun-bg-color: #121212;
+  --yun-text-color: #e0e0e0;
+  --yun-block-bg: var(--yun-dark-block);
+}
+
+/* ============================================
+   Sunset Mode
+   ============================================ */
+
+[data-theme='sunset'] {
+  --yun-primary-color: var(--yun-sunset-primary);
+  --yun-bg-color: var(--yun-sunset-bg);
+  --yun-text-color: var(--yun-sunset-text);
+  --yun-link-color: var(--yun-sunset-link);
+  --yun-selection-bg: var(--yun-sunset-selection);
+  --yun-block-bg: var(--yun-sunset-block);
+}
+
+/* ============================================
+   Global Styles
+   ============================================ */
+
+body {
+  font-family: var(--yun-font-sans-serif);
+  background-color: var(--yun-bg-color);
+  color: var(--yun-text-color);
+  transition: var(--yun-transition);
+}
+
+::selection {
+  background: var(--yun-selection-bg);
+  color: white;
+}
+
+/* ============================================
+   Smooth Scrolling
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   Links
+   ============================================ */
+
+a {
+  color: var(--yun-primary-color);
+  text-decoration: none;
+  transition: var(--yun-transition-fast);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   Post Cards
+   ============================================ */
+
+.post-card {
+  background: var(--yun-block-bg, white);
+  border-radius: var(--yun-border-radius);
+  padding: var(--yun-spacing-lg);
+  margin-bottom: var(--yun-spacing-lg);
+  opacity: 0.9;
+  transition: var(--yun-transition);
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Code Blocks
+   ============================================ */
+
+pre[class*='language-'] {
+  border-radius: var(--yun-border-radius);
+  position: relative;
+}
+
+.code-block-copy-button {
+  position: absolute;
+  top: var(--yun-spacing-sm);
+  right: var(--yun-spacing-sm);
+  padding: var(--yun-spacing-xs) var(--yun-spacing-sm);
+  background: var(--yun-primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--yun-border-radius-sm);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: var(--yun-transition-fast);
+}
+
+.code-block-copy-button:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   Banner
+   ============================================ */
+
+.yun-banner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.yun-banner-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: var(--yun-spacing-md);
+  font-family: var(--yun-font-serif);
+}
+
+.yun-banner-go-down {
+  position: absolute;
+  bottom: var(--yun-spacing-xl);
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ============================================
+   Sidebar
+   ============================================ */
+
+.yun-sidebar {
+  background-size: cover;
+  background-position: bottom 1rem center;
+  padding: var(--yun-spacing-xl);
+}
+
+.yun-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto var(--yun-spacing-lg);
+  display: block;
+  transition: var(--yun-transition);
+}
+
+.yun-avatar:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* ============================================
+   Social Links
+   ============================================ */
+
+.yun-social-links {
+  display: flex;
+  gap: var(--yun-spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: var(--yun-spacing-lg) 0;
+}
+
+.yun-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--yun-spacing-xs);
+  padding: var(--yun-spacing-sm) var(--yun-spacing-md);
+  border-radius: var(--yun-border-radius);
+  transition: var(--yun-transition-fast);
+}
+
+.yun-social-link:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+.yun-footer {
+  text-align: center;
+  padding: var(--yun-spacing-xl);
+  margin-top: var(--yun-spacing-xl);
+}
+
+.yun-footer-icon {
+  display: inline-block;
+  margin: 0 var(--yun-spacing-xs);
+}
+
+.yun-footer-icon.animated {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ============================================
+   Reward/Donate Section
+   ============================================ */
+
+.yun-reward {
+  text-align: center;
+  margin: var(--yun-spacing-xl) 0;
+  padding: var(--yun-spacing-lg);
+  border: 2px dashed var(--yun-primary-color);
+  border-radius: var(--yun-border-radius);
+}
+
+.yun-reward-methods {
+  display: flex;
+  gap: var(--yun-spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--yun-spacing-md);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+  .yun-banner-title {
+    font-size: 2rem;
+  }
+
+  .post-card {
+    padding: var(--yun-spacing-md);
+  }
+
+  .yun-sidebar {
+    padding: var(--yun-spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .yun-banner-title {
+    font-size: 1.5rem;
+  }
+
+  .yun-avatar {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.yun-text-center {
+  text-align: center;
+}
+
+.yun-mt-1 { margin-top: var(--yun-spacing-sm); }
+.yun-mt-2 { margin-top: var(--yun-spacing-md); }
+.yun-mt-3 { margin-top: var(--yun-spacing-lg); }
+
+.yun-mb-1 { margin-bottom: var(--yun-spacing-sm); }
+.yun-mb-2 { margin-bottom: var(--yun-spacing-md); }
+.yun-mb-3 { margin-bottom: var(--yun-spacing-lg); }

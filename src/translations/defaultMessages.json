@@ -1,0 +1,42 @@
+{
+  "theme.common.skipToMainContent": {
+    "message": "Skip to main content",
+    "description": "The skip to content label used for accessibility"
+  },
+  "theme.yun.banner.scrollDown": {
+    "message": "Scroll Down",
+    "description": "Banner scroll down button label"
+  },
+  "theme.yun.mode.light": {
+    "message": "Light Mode",
+    "description": "Light theme mode"
+  },
+  "theme.yun.mode.dark": {
+    "message": "Dark Mode",
+    "description": "Dark theme mode"
+  },
+  "theme.yun.mode.sunset": {
+    "message": "Sunset Mode",
+    "description": "Sunset theme mode"
+  },
+  "theme.yun.mode.auto": {
+    "message": "Auto Mode",
+    "description": "Auto theme mode"
+  },
+  "theme.yun.footer.poweredBy": {
+    "message": "Powered by {docusaurus}",
+    "description": "Footer powered by message"
+  },
+  "theme.yun.reward.title": {
+    "message": "Reward",
+    "description": "Reward section title"
+  },
+  "theme.yun.codeblock.copy": {
+    "message": "Copy",
+    "description": "Code block copy button"
+  },
+  "theme.yun.codeblock.copied": {
+    "message": "Copied!",
+    "description": "Code block copied confirmation"
+  }
+}
