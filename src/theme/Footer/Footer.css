@@ -1,0 +1,53 @@
+.yun-footer-wrapper {
+  margin-top: 4rem;
+}
+
+.yun-footer-extra {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--yun-block-bg, transparent);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .yun-footer-extra {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.yun-footer-copyright {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.yun-footer-icon {
+  display: inline-block;
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.yun-footer-icon.animated {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.yun-footer-powered {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.yun-footer-powered a {
+  color: var(--yun-primary-color);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.yun-footer-powered a:hover {
+  opacity: 0.7;
+}

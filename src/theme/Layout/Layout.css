@@ -1,0 +1,14 @@
+.yun-layout {
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+.yun-theme-dark {
+  --yun-bg-color: #121212;
+  --yun-text-color: #e0e0e0;
+}
+
+.yun-theme-sunset {
+  --yun-bg-color: var(--yun-sunset-bg);
+  --yun-text-color: var(--yun-sunset-text);
+}

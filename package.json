@@ -1,32 +1,60 @@
 {
-  "name": "hexo-theme-yun",
-  "version": "1.10.11",
-  "description": "☁️ A fast & light & lovely theme for Hexo.",
+  "name": "docusaurus-theme-yun",
+  "version": "2.0.0",
+  "description": "☁️ A fast & light & lovely theme for Docusaurus - Converted from hexo-theme-yun.",
   "keywords": [
-    "hexo",
+    "docusaurus",
+    "docusaurus-theme",
     "theme",
-    "yun"
+    "yun",
+    "react"
   ],
   "license": "MIT",
   "author": "YunYouJun <me@yunyoujun.cn>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YunYouJun/hexo-theme-yun.git"
+    "url": "git+https://github.com/Bryan0324/hexo-theme-yun-unofficial.git"
   },
-  "homepage": "https://yun.yunyoujun.cn",
+  "homepage": "https://github.com/Bryan0324/hexo-theme-yun-unofficial",
   "bugs": {
-    "url": "https://github.com/YunYouJun/hexo-theme-yun/issues"
+    "url": "https://github.com/Bryan0324/hexo-theme-yun-unofficial/issues"
   },
+  "main": "src/index.js",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@docusaurus/theme-classic": "^3.0.0",
+    "@docusaurus/theme-common": "^3.0.0",
+    "@docusaurus/plugin-content-blog": "^3.0.0",
+    "@docusaurus/plugin-content-docs": "^3.0.0",
+    "@docusaurus/plugin-content-pages": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.1.0",
+    "react-icons": "^4.11.0"
+  },
+  "peerDependencies": {
+    "@docusaurus/core": "^3.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/core": "^3.0.0",
+    "@docusaurus/module-type-aliases": "^3.0.0",
+    "@docusaurus/types": "^3.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "typescript": "^5.0.0"
   },
   "files": [
-    "languages",
-    "layout",
-    "scripts",
-    "source",
     "src",
-    "_config.yml",
-    "_vendors.yml"
+    "theme.config.js"
   ]
 }

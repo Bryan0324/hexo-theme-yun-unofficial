@@ -1,0 +1,67 @@
+.yun-avatar-container {
+  position: relative;
+  display: inline-block;
+  margin: 2rem auto;
+}
+
+.yun-avatar {
+  width: 120px;
+  height: 120px;
+  display: block;
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+
+.yun-avatar-rounded {
+  border-radius: 50%;
+}
+
+.yun-avatar:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.yun-avatar-status {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.yun-avatar-status-emoji {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.yun-avatar-status-message {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  padding: 0.25rem 0.5rem;
+  background: var(--yun-block-bg);
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .yun-avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .yun-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .yun-avatar-status-emoji {
+    font-size: 1.2rem;
+  }
+
+  .yun-avatar-status-message {
+    font-size: 0.75rem;
+  }
+}
