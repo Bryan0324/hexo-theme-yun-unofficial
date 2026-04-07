@@ -1,0 +1,85 @@
+---
+import { SITE_CONFIG } from '../config';
+import Sidebar from '../components/Sidebar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  postCount?: number;
+  categoryCount?: number;
+  tagCount?: number;
+}
+
+const {
+  title,
+  description = SITE_CONFIG.description,
+  postCount = 0,
+  categoryCount = 0,
+  tagCount = 0,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE_CONFIG.title}` : SITE_CONFIG.title;
+---
+
+<!doctype html>
+<html lang={SITE_CONFIG.language} class={SITE_CONFIG.mode === 'dark' ? 'dark' : SITE_CONFIG.mode === 'sunset' ? 'sunset' : ''}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content={SITE_CONFIG.colors.primary} />
+    <meta name="author" content={SITE_CONFIG.author} />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme" content="hexo-theme-yun-astro" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type={SITE_CONFIG.favicon.endsWith('.svg') ? 'image/svg+xml' : 'image/png'}
+      href={SITE_CONFIG.favicon}
+    />
+    <link rel="mask-icon" href={SITE_CONFIG.favicon} color={SITE_CONFIG.colors.primary} />
+
+    <title>{pageTitle}</title>
+
+    <!-- Iconify for icons (same as original theme) -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js" is:inline></script>
+  </head>
+
+  <body>
+    <!-- Theme mode detection on first paint to avoid flash -->
+    <script is:inline>
+      (function () {
+        var saved = localStorage.getItem('darken-mode');
+        if (saved && saved !== 'auto') {
+          if (saved === 'dark' || saved === 'sunset') {
+            document.documentElement.classList.add(saved);
+          }
+          return;
+        }
+        var prefersDark =
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <div class="container">
+      <Sidebar
+        postCount={postCount}
+        categoryCount={categoryCount}
+        tagCount={tagCount}
+      />
+
+      <main id="content" class="sidebar-translate">
+        <slot />
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

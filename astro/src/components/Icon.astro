@@ -1,0 +1,11 @@
+---
+// Renders an Iconify icon via the Iconify CDN (same as the Hexo theme).
+// Usage: <Icon name="ri:home-4-line" size={20} />
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+const { name, size = 16, class: cls } = Astro.props;
+---
+<iconify-icon icon={name} width={size} height={size} class={cls} />

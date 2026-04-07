@@ -1,0 +1,25 @@
+---
+import { SITE_CONFIG } from '../config';
+import Icon from './Icon.astro';
+
+const { banner } = SITE_CONFIG;
+---
+
+<div id="banner">
+  <div class="banner-line vertical-line-top"></div>
+  <div class="banner-char-container">
+    ☁️
+  </div>
+  <div class="banner-line vertical-line-bottom"></div>
+
+  {banner.goDown.enable && (
+    <a
+      id="goDown"
+      aria-label="go-down"
+      href="javascript:void(0)"
+      onclick="window.scrollTo({ top: document.getElementById('banner')?.clientHeight ?? 0, behavior: 'smooth' })"
+    >
+      <Icon name={banner.goDown.icon} size={28} />
+    </a>
+  )}
+</div>

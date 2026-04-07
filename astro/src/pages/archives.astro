@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Group by year
+const byYear = sorted.reduce<Record<number, typeof sorted>>((acc, post) => {
+  const year = post.data.date.getFullYear();
+  (acc[year] ??= []).push(post);
+  return acc;
+}, {});
+
+const years = Object.keys(byYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-CA');
+}
+
+const allCategories = [...new Set(allPosts.flatMap((p) => p.data.categories ?? []))];
+const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags ?? []))];
+---
+
+<BaseLayout
+  title="Archives"
+  postCount={allPosts.length}
+  categoryCount={allCategories.length}
+  tagCount={allTags.length}
+>
+  <div class="hty-card">
+    <h1>Archives</h1>
+    <p style="color: var(--hty-gray-color);">{allPosts.length} posts in total</p>
+
+    {years.map((year) => (
+      <div>
+        <h2 class="archive-year">{year}</h2>
+        <ul class="archive-list">
+          {byYear[year].map((post) => (
+            <li class="archive-item">
+              <span class="archive-date">{formatDate(post.data.date)}</span>
+              <a class="archive-title" href={`/posts/${post.slug}/`}>{post.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</BaseLayout>

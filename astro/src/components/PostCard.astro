@@ -1,0 +1,86 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { title, date, description, tags, categories, cover } = post.data;
+const url = `/posts/${post.slug}/`;
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-CA'); // YYYY-MM-DD
+}
+---
+
+<article class="post-card w-full" itemscope itemtype="https://schema.org/Article">
+  {(post.data.top || post.data.sticky) && (
+    <div class="post-top-icon">
+      <Icon name="ri:pushpin-line" size={16} />
+    </div>
+  )}
+
+  <div class="post-card-header">
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link" itemprop="url" href={url}>{title}</a>
+      </h2>
+
+      <div class="post-meta">
+        <span class="post-meta-item">
+          <Icon name="ri:calendar-line" size={14} />
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        </span>
+        {categories && categories.length > 0 && (
+          <span class="post-meta-item">
+            <Icon name="ri:folder-2-line" size={14} />
+            {categories.map((cat) => (
+              <a href={`/categories/${encodeURIComponent(cat)}/`}>{cat}</a>
+            ))}
+          </span>
+        )}
+      </div>
+
+      {description && <p class="post-description">{description}</p>}
+    </header>
+  </div>
+
+  <div class="post-card-content text-center">
+    {cover && (
+      <img src={cover} alt={title} style="width:100%;max-height:200px;object-fit:cover;border-radius:0.3rem;margin-bottom:0.5rem;" />
+    )}
+  </div>
+
+  <div class="hty-card__actions post-card__actions">
+    <div class="post-card-category">
+      {categories && categories.length > 0 ? (
+        categories.map((cat) => (
+          <a class="post-meta-item" href={`/categories/${encodeURIComponent(cat)}/`}>
+            <Icon name="ri:folder-line" size={13} />
+            {cat}
+          </a>
+        ))
+      ) : (
+        <span class="post-meta-item-icon">
+          <Icon name="ri:folder-line" size={13} />
+        </span>
+      )}
+    </div>
+    <div class="post-card-tag">
+      {tags && tags.length > 0 ? (
+        tags.map((tag) => (
+          <a class="post-meta-item" href={`/tags/${encodeURIComponent(tag)}/`} style="margin-right:0.3rem;">
+            <Icon name="ri:price-tag-3-line" size={13} />
+            {tag}
+          </a>
+        ))
+      ) : (
+        <span class="post-meta-item-icon">
+          <Icon name="ri:price-tag-3-line" size={13} />
+        </span>
+      )}
+    </div>
+  </div>
+</article>

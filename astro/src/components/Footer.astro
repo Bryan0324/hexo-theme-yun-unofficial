@@ -1,0 +1,51 @@
+---
+import { SITE_CONFIG } from '../config';
+import Icon from './Icon.astro';
+
+const { footer } = SITE_CONFIG;
+const nowYear = new Date().getFullYear();
+---
+
+<footer id="footer" class="sidebar-translate">
+  {footer.beian.enable && (
+    <div class="beian">
+      <a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">
+        {footer.beian.icp}
+      </a>
+    </div>
+  )}
+
+  <div class="copyright">
+    <span>
+      &copy;{' '}
+      {footer.since && footer.since !== nowYear && `${footer.since} – `}
+      {nowYear}{' '}
+    </span>
+
+    {footer.icon.url ? (
+      <a id="animate" class="with-love" href={footer.icon.url} title={footer.icon.title}>
+        <Icon name={footer.icon.name} size={20} />
+      </a>
+    ) : (
+      <span id="animate" class="with-love" title={footer.icon.title}>
+        <Icon name={footer.icon.name} size={20} />
+      </span>
+    )}
+
+    <span class="author"> {SITE_CONFIG.author}</span>
+  </div>
+
+  {footer.powered && (
+    <div class="powered">
+      <span>
+        Powered by{' '}
+        <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+        {' '}·{' '}
+        Theme –{' '}
+        <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank">
+          Yun
+        </a>
+      </span>
+    </div>
+  )}
+</footer>

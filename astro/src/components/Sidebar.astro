@@ -1,0 +1,139 @@
+---
+import { SITE_CONFIG } from '../config';
+import Icon from './Icon.astro';
+
+interface Props {
+  postCount?: number;
+  categoryCount?: number;
+  tagCount?: number;
+}
+const { postCount = 0, categoryCount = 0, tagCount = 0 } = Astro.props;
+const { avatar, sidebar, menu, social, modeToggle } = SITE_CONFIG;
+---
+
+<!-- Mobile menu toggle button -->
+<button id="menu-btn" class="hty-icon-button" aria-label="Toggle sidebar">
+  <Icon name="ri:menu-line" size={20} />
+</button>
+
+<!-- Overlay for mobile -->
+<div class="sidebar-toggle sidebar-overlay" id="sidebar-overlay"></div>
+
+<aside
+  class="sidebar"
+  style={sidebar.bgImage ? `background-image: url('${sidebar.bgImage}'); background-position: ${sidebar.bgPosition};` : ''}
+>
+  <!-- Site overview -->
+  <div id="site-overview-wrap" class="site-overview">
+    {avatar.enable && (
+      <a href="/">
+        <img
+          src={avatar.url}
+          alt={SITE_CONFIG.author}
+          class={`site-avatar${avatar.rounded ? ' rounded' : ''}`}
+          style={`opacity: ${avatar.opacity}`}
+          width="80"
+          height="80"
+        />
+      </a>
+    )}
+
+    <p class="site-author">{SITE_CONFIG.author}</p>
+    {SITE_CONFIG.description && (
+      <p class="site-description">{SITE_CONFIG.description}</p>
+    )}
+
+    <nav class="site-state">
+      <!-- Home -->
+      <a class="site-state-item hty-icon-button" href={menu.home.path} title={menu.home.title}>
+        <span class="site-state-item-icon">
+          <Icon name={menu.home.icon} size={18} />
+        </span>
+      </a>
+
+      {menu.list.map((item) => {
+        const count =
+          item.type === 'archives'
+            ? postCount
+            : item.type === 'categories'
+            ? categoryCount
+            : item.type === 'tags'
+            ? tagCount
+            : undefined;
+        return (
+          <div class="site-state-item">
+            <a href={item.path} title={item.title}>
+              <span class="site-state-item-icon">
+                <Icon name={item.icon} size={18} />
+              </span>
+              {count !== undefined && (
+                <span class="site-state-item-count">{count}</span>
+              )}
+            </a>
+          </div>
+        );
+      })}
+    </nav>
+
+    <hr style="margin-bottom:0.5rem" />
+
+    {social.length > 0 && (
+      <div class="links-of-author">
+        {social.map((s) => (
+          <a
+            class="links-of-author-item hty-icon-button"
+            rel="noopener"
+            href={s.link}
+            title={s.name}
+            target="_blank"
+            style={`color: ${s.color === 'black' ? 'var(--hty-text-color)' : s.color}`}
+          >
+            <Icon name={s.icon} size={20} />
+          </a>
+        ))}
+      </div>
+    )}
+
+    {modeToggle.enable && (
+      <a
+        id="toggle-mode-btn"
+        class="links-item hty-icon-button"
+        href="javascript:;"
+        title="Toggle mode"
+        style="color: #f1cb64"
+      >
+        <Icon name="ri:contrast-2-line" size={20} />
+      </a>
+    )}
+  </div>
+</aside>
+
+<script>
+  // Sidebar toggle for mobile
+  const menuBtn = document.getElementById('menu-btn');
+  const overlay = document.getElementById('sidebar-overlay');
+
+  function toggleSidebar() {
+    document.body.classList.toggle('sidebar-open');
+  }
+
+  menuBtn?.addEventListener('click', toggleSidebar);
+  overlay?.addEventListener('click', toggleSidebar);
+
+  // Mode toggle
+  const modeBtn = document.getElementById('toggle-mode-btn');
+  modeBtn?.addEventListener('click', () => {
+    const html = document.documentElement;
+    if (html.classList.contains('dark')) {
+      html.classList.remove('dark');
+      html.classList.add('sunset');
+      localStorage.setItem('darken-mode', 'sunset');
+    } else if (html.classList.contains('sunset')) {
+      html.classList.remove('sunset');
+      localStorage.setItem('darken-mode', 'light');
+    } else {
+      html.classList.add('dark');
+      localStorage.setItem('darken-mode', 'dark');
+    }
+  });
+</script>
