@@ -13,13 +13,14 @@ const { banner } = SITE_CONFIG;
   <div class="banner-line vertical-line-bottom"></div>
 
   {banner.goDown.enable && (
-    <a
+    <button
       id="goDown"
-      aria-label="go-down"
-      href="javascript:void(0)"
+      aria-label="scroll down"
+      type="button"
+      style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.8);font-size:1.5rem;"
       onclick="window.scrollTo({ top: document.getElementById('banner')?.clientHeight ?? 0, behavior: 'smooth' })"
     >
       <Icon name={banner.goDown.icon} size={28} />
-    </a>
+    </button>
   )}
 </div>

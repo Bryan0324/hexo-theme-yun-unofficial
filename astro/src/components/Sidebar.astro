@@ -95,15 +95,15 @@ const { avatar, sidebar, menu, social, modeToggle } = SITE_CONFIG;
     )}
 
     {modeToggle.enable && (
-      <a
+      <button
         id="toggle-mode-btn"
         class="links-item hty-icon-button"
-        href="javascript:;"
         title="Toggle mode"
-        style="color: #f1cb64"
+        style="color: #f1cb64; background: none; border: none; cursor: pointer;"
+        type="button"
       >
         <Icon name="ri:contrast-2-line" size={20} />
-      </a>
+      </button>
     )}
   </div>
 </aside>
